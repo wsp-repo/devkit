@@ -1,0 +1,79 @@
+{
+  "name": "@zalib/devkit",
+  "version": "5.9.0",
+  "description": "DevKIT package",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^22.22.3",
+    "npm": "^10.9.8"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "exports": {
+    "./eslint": {
+      "default": "./dist/eslint/index.js",
+      "types": "./dist/eslint/index.d.ts"
+    },
+    "./prettier": {
+      "default": "./dist/prettier/index.js",
+      "types": "./dist/prettier/index.d.ts"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsp-repo/devkit.git"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "clean": "rimraf dist",
+    "format": "prettier --write 'src/**/*.{js,ts,json,md}'",
+    "lint": "eslint ./src --quiet",
+    "lint:fix": "eslint ./src --fix",
+    "prebuild": "rimraf dist",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "release:major": "npm version major",
+    "release:minor": "npm version minor",
+    "release:patch": "npm version patch",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "8.59.4",
+    "@typescript-eslint/parser": "8.59.4",
+    "@typescript-eslint/utils": "8.59.4",
+    "@vitest/coverage-v8": "4.1.7",
+    "eslint": "9.39.4",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-import-resolver-typescript": "4.4.4",
+    "eslint-plugin-import-x": "4.16.2",
+    "eslint-plugin-perfectionist": "5.9.0",
+    "eslint-plugin-security": "4.0.0",
+    "husky": "9.1.7",
+    "lint-staged": "17.0.5",
+    "prettier": "3.8.3",
+    "rimraf": "6.1.3",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3",
+    "vitest": "4.1.7"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.1"
+  },
+  "overrides": {
+    "rimraf": "6.1.3"
+  },
+  "lint-staged": {
+    "package.json": "check-exact-package",
+    "*.{js,ts}": [
+      "eslint --quiet --max-warnings 0",
+      "eslint --quiet --fix",
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged --allow-empty"
+    }
+  }
+}
