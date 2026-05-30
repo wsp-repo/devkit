@@ -1,0 +1,7 @@
+# System
+node_modules
+dist
+
+# IDE
+.vscode
+.idea
