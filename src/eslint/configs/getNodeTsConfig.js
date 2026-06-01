@@ -1,13 +1,12 @@
 /* eslint-disable max-lines-per-function */
 
-const tsEslintPlugin = require('@typescript-eslint/eslint-plugin');
-const tsParser = require('@typescript-eslint/parser');
 const importXPlugin = require('eslint-plugin-import-x');
 const tsPerfectionistPlugin = require('eslint-plugin-perfectionist');
 const securityPlugin = require('eslint-plugin-security');
+const unusedImportsPlugin = require('eslint-plugin-unused-imports');
+const tsEslint = require('typescript-eslint');
 
-const nodeJsConfig = require('./getNodeJsConfig');
-const resolvePackageDirs = require('./helpers/resolvePackageDirs');
+const resolvePackageDirs = require('../helpers/resolvePackageDirs');
 
 function eslintMembersGroup(suffix) {
   return [
@@ -47,9 +46,10 @@ function eslintImportSortCustomGroups(prefix, selectors, pattern) {
 
 module.exports = ({ cwd, files, tsconfig } = {}) => [
   {
+    extends: [tsEslint.configs.recommended],
     files: files || ['**/*.ts'],
     languageOptions: {
-      parser: tsParser,
+      parser: tsEslint.parser,
       parserOptions: {
         ecmaFeatures: { modules: true },
         project: tsconfig || './tsconfig.json',
@@ -57,15 +57,12 @@ module.exports = ({ cwd, files, tsconfig } = {}) => [
       },
     },
     plugins: {
-      '@typescript-eslint': tsEslintPlugin,
       'import-x': importXPlugin,
       perfectionist: tsPerfectionistPlugin,
       security: securityPlugin,
+      unusedImports: unusedImportsPlugin,
     },
     rules: {
-      ...tsEslintPlugin.configs.recommended.rules,
-      ...tsEslintPlugin.configs['recommended-requiring-type-checking'].rules,
-
       // переопределения базовых правил плагинов
       '@typescript-eslint/await-thenable': 'warn',
       '@typescript-eslint/consistent-type-imports': [
@@ -252,6 +249,7 @@ module.exports = ({ cwd, files, tsconfig } = {}) => [
       'import-x/order': 'off',
       'import-x/prefer-default-export': 'off',
       'max-classes-per-file': 'off',
+      'no-unused-vars': 'off',
       // Сортировка enum (по имени или значению)
       'perfectionist/sort-enums': [
         'error',
@@ -309,6 +307,16 @@ module.exports = ({ cwd, files, tsconfig } = {}) => [
         },
       ],
       'sort-imports': 'off',
+      'unusedImports/no-unused-imports': 'error',
+      'unusedImports/no-unused-vars': [
+        'warn',
+        {
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+          vars: 'all',
+          varsIgnorePattern: '^_',
+        },
+      ],
     },
     settings: {
       'import/resolver': [
