@@ -1,12 +1,18 @@
 /* eslint-disable max-lines-per-function */
 
+const {
+  createTypeScriptImportResolver,
+} = require('eslint-import-resolver-typescript');
 const importXPlugin = require('eslint-plugin-import-x');
 const tsPerfectionistPlugin = require('eslint-plugin-perfectionist');
 const securityPlugin = require('eslint-plugin-security');
 const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 const tsEslint = require('typescript-eslint');
 
-const resolvePackageDirs = require('../helpers/resolvePackageDirs');
+const {
+  getTsconfigRootDir,
+  resolvePackageDirs,
+} = require('../helpers/resolveDirectories');
 
 function eslintMembersGroup(suffix) {
   return [
@@ -44,16 +50,21 @@ function eslintImportSortCustomGroups(prefix, selectors, pattern) {
   }));
 }
 
-module.exports = ({ cwd, files, tsconfig } = {}) => [
+module.exports = ({ cwd, files } = {}) => [
   {
-    extends: [tsEslint.configs.recommended],
+    extends: [
+      tsEslint.configs.recommended,
+      tsEslint.configs.recommendedTypeChecked,
+      securityPlugin.configs.recommended,
+    ],
     files: files || ['**/*.ts'],
     languageOptions: {
       parser: tsEslint.parser,
       parserOptions: {
         ecmaFeatures: { modules: true },
-        project: tsconfig || './tsconfig.json',
+        projectService: true,
         sourceType: 'module',
+        tsconfigRootDir: getTsconfigRootDir(cwd),
       },
     },
     plugins: {
@@ -319,12 +330,10 @@ module.exports = ({ cwd, files, tsconfig } = {}) => [
       ],
     },
     settings: {
-      'import/resolver': [
-        {
-          typescript: {
-            project: tsconfig || './tsconfig.json',
-          },
-        },
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
+          alwaysTryTypes: true,
+        }),
       ],
     },
   },
