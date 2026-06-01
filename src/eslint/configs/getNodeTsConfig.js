@@ -55,11 +55,10 @@ module.exports = ({ cwd, files } = {}) => [
       tsEslint.configs.recommended,
       tsEslint.configs.recommendedTypeChecked,
     ],
-    files: files || ['**/*.ts'],
+    files: files || ['**/*.{ts,tsx,mts,cts}'],
     languageOptions: {
       parser: tsEslint.parser,
       parserOptions: {
-        ecmaFeatures: { modules: true },
         projectService: true,
         sourceType: 'module',
         tsconfigRootDir: getTsconfigRootDir(cwd),

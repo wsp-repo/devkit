@@ -12,7 +12,6 @@ function resolveDirectories(fileName, cwdDir = process.cwd()) {
   while (true) {
     const packageJsonPath = join(currentDir, fileName);
 
-     
     if (existsSync(packageJsonPath)) {
       packageDirs.push(currentDir);
     }
