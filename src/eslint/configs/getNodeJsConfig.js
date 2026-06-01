@@ -1,4 +1,3 @@
-const prettierConfig = require('eslint-config-prettier');
 const importXPlugin = require('eslint-plugin-import-x');
 const perfectionistPlugin = require('eslint-plugin-perfectionist');
 const securityPlugin = require('eslint-plugin-security');
@@ -115,5 +114,4 @@ module.exports = ({ files } = {}) => [
       strict: 'off',
     },
   },
-  prettierConfig,
 ];

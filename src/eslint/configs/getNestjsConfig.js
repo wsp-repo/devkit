@@ -1,4 +1,4 @@
-const nestjsPlugin = require('./nestjsPlugin');
+const { nestjsPlugin } = require('../plugins');
 
 module.exports = ({ files } = {}) => [
   {
