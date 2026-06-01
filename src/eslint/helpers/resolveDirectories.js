@@ -12,7 +12,7 @@ function resolveDirectories(fileName, cwdDir = process.cwd()) {
   while (true) {
     const packageJsonPath = join(currentDir, fileName);
 
-    // eslint-disable-next-line
+     
     if (existsSync(packageJsonPath)) {
       packageDirs.push(currentDir);
     }

@@ -5,7 +5,6 @@ const {
 } = require('eslint-import-resolver-typescript');
 const importXPlugin = require('eslint-plugin-import-x');
 const tsPerfectionistPlugin = require('eslint-plugin-perfectionist');
-const securityPlugin = require('eslint-plugin-security');
 const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 const tsEslint = require('typescript-eslint');
 
@@ -55,7 +54,6 @@ module.exports = ({ cwd, files } = {}) => [
     extends: [
       tsEslint.configs.recommended,
       tsEslint.configs.recommendedTypeChecked,
-      securityPlugin.configs.recommended,
     ],
     files: files || ['**/*.ts'],
     languageOptions: {
@@ -70,7 +68,6 @@ module.exports = ({ cwd, files } = {}) => [
     plugins: {
       'import-x': importXPlugin,
       perfectionist: tsPerfectionistPlugin,
-      security: securityPlugin,
       unusedImports: unusedImportsPlugin,
     },
     rules: {
