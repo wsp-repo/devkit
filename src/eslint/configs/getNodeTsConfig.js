@@ -246,6 +246,7 @@ module.exports = ({ cwd, files } = {}) => [
       'import-x/namespace': 'error',
       'import-x/newline-after-import': 'error',
       'import-x/no-cycle': 'error',
+      'import-x/no-duplicates': 'error',
       'import-x/no-extraneous-dependencies': [
         'error',
         {
