@@ -54,6 +54,7 @@ module.exports = ({ cwd, files } = {}) => [
     extends: [
       tsEslint.configs.recommended,
       tsEslint.configs.recommendedTypeChecked,
+      'prettier',
     ],
     files: files || ['**/*.{ts,tsx,mts,cts}'],
     languageOptions: {
@@ -75,7 +76,8 @@ module.exports = ({ cwd, files } = {}) => [
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
-          prefer: 'type-imports',
+          // fixStyle: 'inline-type-imports', // ToDo подумать
+          prefer: 'no-type-imports',
         },
       ],
       '@typescript-eslint/explicit-function-return-type': [
@@ -277,11 +279,12 @@ module.exports = ({ cwd, files } = {}) => [
             ...eslintImportSortCustomGroups(
               'const',
               ['parent', 'sibling', 'index', 'internal'],
-              '.*(constants?|config?).*',
+              '.*(constants?|configs?).*',
             ),
           ],
           groups: [
             'side-effect',
+            'builtin',
             'external',
             'internal',
             ['parent', 'sibling', 'index'],
@@ -290,7 +293,7 @@ module.exports = ({ cwd, files } = {}) => [
             'unknown',
           ],
           ignoreCase: true,
-          internalPattern: ['^@/', '^~/', '^src/'],
+          internalPattern: ['^@/', '^src/', '^shared/'],
           newlinesBetween: 1,
           order: 'asc',
           sortSideEffects: false,
