@@ -1,6 +1,5 @@
 const importXPlugin = require('eslint-plugin-import-x');
 const perfectionistPlugin = require('eslint-plugin-perfectionist');
-const securityPlugin = require('eslint-plugin-security');
 
 module.exports = ({ files } = {}) => [
   {
@@ -8,10 +7,8 @@ module.exports = ({ files } = {}) => [
     plugins: {
       'import-x': importXPlugin,
       perfectionist: perfectionistPlugin,
-      security: securityPlugin,
     },
     rules: {
-      ...securityPlugin.configs.recommended.rules,
       'arrow-parens': [
         'warn',
         'always',

@@ -17,6 +17,6 @@ module.exports = {
   getNodeTsConfig: require('./configs/getNodeTsConfig'),
   getTestsConfig: require('./configs/getTestsConfig'),
   // экспортируемые хелперы для кастомизации
-  isModuleInstalled: require('./helpers/isModuleInstalled'),
-  resolvePackageDirs: require('./helpers/resolvePackageDirs'),
+  ...require('./helpers/resolveDirectories'),
+  ...require('./helpers/isModuleInstalled'),
 };

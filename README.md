@@ -16,10 +16,12 @@ The package uses:
 
 - ESLint 9 flat config
 - Prettier for formatting
-- `eslint-plugin-import-x`
-- `eslint-plugin-security`
-- `eslint-plugin-perfectionist`
-- `@typescript-eslint`
+- eslint-config-prettier
+- eslint-import-resolver-typescript
+- eslint-plugin-import-x
+- eslint-plugin-perfectionist
+- eslint-plugin-unused-imports
+- typescript-eslint
 
 ## Included Configurations
 

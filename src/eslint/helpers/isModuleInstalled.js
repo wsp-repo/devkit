@@ -1,7 +1,7 @@
 /**
  * Хелпер для проверки установки плагина
  */
-const isModuleInstalled = (moduleName) => {
+function isModuleInstalled(moduleName) {
   try {
     require.resolve(moduleName);
 
@@ -9,6 +9,8 @@ const isModuleInstalled = (moduleName) => {
   } catch {
     return false;
   }
-};
+}
 
-module.exports = isModuleInstalled;
+module.exports = {
+  isModuleInstalled,
+};
