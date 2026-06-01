@@ -54,7 +54,6 @@ module.exports = ({ cwd, files } = {}) => [
     extends: [
       tsEslint.configs.recommended,
       tsEslint.configs.recommendedTypeChecked,
-      'prettier',
     ],
     files: files || ['**/*.{ts,tsx,mts,cts}'],
     languageOptions: {
