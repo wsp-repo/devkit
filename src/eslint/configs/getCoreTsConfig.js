@@ -41,14 +41,6 @@ function eslintMembersGroup(suffix) {
   ];
 }
 
-function eslintImportSortCustomGroups(prefix, selectors, pattern) {
-  return selectors.map((selector) => ({
-    elementNamePattern: pattern,
-    groupName: `${prefix}-${selector}`,
-    selector,
-  }));
-}
-
 module.exports = ({ cwd, files } = {}) => [
   {
     extends: [
@@ -79,12 +71,6 @@ module.exports = ({ cwd, files } = {}) => [
           prefer: 'no-type-imports',
         },
       ],
-      '@typescript-eslint/explicit-function-return-type': [
-        'error',
-        {
-          allowExpressions: true,
-        },
-      ],
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
         {
@@ -94,7 +80,6 @@ module.exports = ({ cwd, files } = {}) => [
           },
         },
       ],
-      '@typescript-eslint/explicit-module-boundary-types': 'error',
       '@typescript-eslint/member-ordering': [
         'error',
         {
@@ -192,19 +177,6 @@ module.exports = ({ cwd, files } = {}) => [
         },
       ],
       '@typescript-eslint/no-base-to-string': 'off',
-      '@typescript-eslint/no-empty-function': [
-        'error',
-        {
-          allow: [
-            'constructors',
-            'private-constructors',
-            'protected-constructors',
-            'decoratedFunctions',
-            'overrideMethods',
-            'setters',
-          ],
-        },
-      ],
       '@typescript-eslint/no-empty-object-type': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-floating-promises': 'off',
@@ -226,6 +198,7 @@ module.exports = ({ cwd, files } = {}) => [
       '@typescript-eslint/no-unsafe-function-type': 'error',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-wrapper-object-types': 'error',
       '@typescript-eslint/require-await': 'warn',
       '@typescript-eslint/restrict-template-expressions': [
@@ -264,39 +237,6 @@ module.exports = ({ cwd, files } = {}) => [
         'error',
         {
           order: 'asc',
-          type: 'alphabetical',
-        },
-      ],
-      'perfectionist/sort-imports': [
-        'error',
-        {
-          customGroups: [
-            ...eslintImportSortCustomGroups(
-              'types',
-              ['parent', 'sibling', 'index', 'internal'],
-              '.*(interfaces?|types?|typings?).*',
-            ),
-            ...eslintImportSortCustomGroups(
-              'const',
-              ['parent', 'sibling', 'index', 'internal'],
-              '.*(constants?|configs?).*',
-            ),
-          ],
-          groups: [
-            'side-effect',
-            'builtin',
-            'external',
-            'internal',
-            ['parent', 'sibling', 'index'],
-            ['types-internal', 'types-parent', 'types-sibling', 'types-index'],
-            ['const-internal', 'const-parent', 'const-sibling', 'const-index'],
-            'unknown',
-          ],
-          ignoreCase: true,
-          internalPattern: ['^@/', '^src/', '^shared/'],
-          newlinesBetween: 1,
-          order: 'asc',
-          sortSideEffects: false,
           type: 'alphabetical',
         },
       ],
