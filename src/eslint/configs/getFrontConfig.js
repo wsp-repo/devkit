@@ -6,7 +6,7 @@ const tsEslint = require('typescript-eslint');
 module.exports = ({ cwd, files } = {}) => [
   ...require('./getCoreTsConfig')({ cwd, files }),
   {
-    extends: [js.configs.recommended, tsEslint.configs.recommended],
+    extends: [js.configs.recommended],
     files: files || ['**/*.{ts,tsx}'],
     languageOptions: {
       globals: globals.browser,

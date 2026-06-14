@@ -7,7 +7,6 @@ const tsEslint = require('typescript-eslint');
 module.exports = ({ cwd, files, pagesLayerPattern } = {}) => [
   ...require('./getFrontConfig')({ cwd, files }),
   {
-    extends: [js.configs.recommended, tsEslint.configs.recommended],
     files: files || ['**/*.{ts,tsx}'],
     languageOptions: {
       globals: globals.browser,

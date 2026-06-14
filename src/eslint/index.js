@@ -12,7 +12,7 @@ function localDefineConfig(rulesSections = []) {
 module.exports = {
   defineConfig: localDefineConfig,
   // функции генерации секций конфигураций
-  getBackConfig: require('./configs/getBackConfig'),
+  getBackTsConfig: require('./configs/getBackTsConfig'),
   getCoreJsConfig: require('./configs/getCoreJsConfig'),
   getCoreTsConfig: require('./configs/getCoreTsConfig'),
   getFrontConfig: require('./configs/getFrontConfig'),
