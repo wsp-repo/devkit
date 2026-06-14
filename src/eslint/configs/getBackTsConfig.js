@@ -18,10 +18,6 @@ function eslintImportSortCustomGroups(prefix, selectors, pattern) {
 module.exports = ({ cwd, files } = {}) => [
   ...require('./getCoreTsConfig')({ cwd, files }),
   {
-    extends: [
-      tsEslint.configs.recommended,
-      tsEslint.configs.recommendedTypeChecked,
-    ],
     files: files || ['**/*.{ts,tsx,mts,cts}'],
     languageOptions: {
       parser: tsEslint.parser,

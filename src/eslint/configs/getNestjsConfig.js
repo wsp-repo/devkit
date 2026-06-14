@@ -1,7 +1,7 @@
 const { nestjsPlugin } = require('../plugins');
 
 module.exports = ({ cwd, files } = {}) => [
-  ...require('./getBackConfig')({ cwd, files }),
+  ...require('./getBackTsConfig')({ cwd, files }),
   {
     files: files || ['**/*.controller.ts'],
     plugins: { nestjs: nestjsPlugin },

@@ -8,12 +8,7 @@ const tsEslint = require('typescript-eslint');
 module.exports = ({ cwd, files } = {}) => [
   ...require('./getFrontConfig')({ cwd, files }),
   {
-    extends: [
-      js.configs.recommended,
-      tsEslint.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
+    extends: [reactHooks.configs.flat.recommended, reactRefresh.configs.vite],
     files: files || ['**/*.{ts,tsx}'],
     languageOptions: {
       globals: globals.browser,
